@@ -1,6 +1,6 @@
 terraform {
   backend "local" {
-    path = "/var/lib/jenkins/terraform-apply"
+    path = "/var/lib/jenkins/workspace/terraform-apply"
   }
 }
 
