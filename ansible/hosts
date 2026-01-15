@@ -1,3 +1,4 @@
-[servers]
+[server1]
 server1 ansible_host=172.31.29.172 ansible_user=ubuntu
+[server2]
 server2 ansible_host=172.31.31.232 ansible_user=ubuntu
