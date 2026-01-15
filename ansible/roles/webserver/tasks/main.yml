@@ -1,0 +1,15 @@
+---
+# Install & configure Apache webserver
+
+- name: Install latest version of Apache
+  package:
+    name: apache2
+    state: present
+
+- name: Replace default index.html
+  copy:
+    src: index.html
+    dest: /var/www/html/index.html
+    owner: root
+    group: root
+    mode: '0644'
