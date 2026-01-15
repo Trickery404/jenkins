@@ -1,0 +1,31 @@
+---
+- host: all
+  become: true
+
+  tasks:
+    - name: Install latest version of Apache
+      apt:
+        name: apache2
+        state: latest
+
+    - name: Replace standard index file in /var/www/html/index.html with custom index.html
+      copy:
+        src: index.html
+        dest: /var/www/html/index.html
+        owner: ubuntu
+        group: ubuntu
+        mode: "0644"
+
+    - name: Restart Apache
+      service:
+        name: apache2
+        state: restarted
+        enabled: true
+      notify: Check HTTP Service
+
+  # This handler has to be called after the webserver is restarted
+  handlers:
+    - name: Check HTTP Service
+      uri:
+        url: http://{{ ansible_default_ipv4.address }}
+        status_code: 200
