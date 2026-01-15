@@ -1,0 +1,27 @@
+---
+- name: Verify services are running
+  hosts: all
+  become: yes
+
+  tasks:
+    - name: Check Apache service status
+      service_facts:
+
+    - name: Test that Apache (apache2) is running
+      assert:
+        that:
+          - "'apache2' in ansible_facts.services"
+          - "ansible_facts.services['apache2'].state == 'running'"
+        success_msg: "Apache is running."
+        fail_msg: "Apache NOT running!"
+
+    - name: Check MySQL service status
+      service_facts:
+
+    - name: Test that MySQL (mysql) is running
+      assert:
+        that:
+          - "'mysql' in ansible_facts.services"
+          - "ansible_facts.services['mysql'].state == 'running'"
+        success_msg: "MySQL is running."
+        fail_msg: "MySQL NOT running!"
