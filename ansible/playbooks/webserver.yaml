@@ -10,7 +10,7 @@
 
     - name: Replace standard index file in /var/www/html/index.html with custom index.html
       copy:
-        src: ./html/index.html
+        src: ../html/index.html
         dest: /var/www/html/index.html
         owner: ubuntu
         group: ubuntu
